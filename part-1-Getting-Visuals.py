@@ -2,12 +2,11 @@ import numpy as np
 from PIL import ImageGrab
 import cv2
 
-# just so this doesn't go on forever:
-
 def screen_record(): 
     last_time = time.time()
     while(True):
-        # 800x600 windowed mode
+        # 800x600 windowed mode for GTA 5, at the top left position of your main screen.
+        # 40 px accounts for title bar. 
         printscreen =  np.array(ImageGrab.grab(bbox=(0,40,800,640)))
         print('loop took {} seconds'.format(time.time()-last_time))
         last_time = time.time()
