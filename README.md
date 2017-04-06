@@ -10,4 +10,4 @@ The plan is to separate out the tutorial videos and "most up-to-date version." F
 ![alt tag](https://raw.githubusercontent.com/Sentdex/pygta5/self-driving-car-grand-theft-auto-5.gif)
 
 
-[[https://github.com/Sentdex/pygta5/blob/master/self-driving-car-grand-theft-auto-5.gif|alt=octocat]]
+[https://github.com/Sentdex/pygta5/blob/master/self-driving-car-grand-theft-auto-5.gif|alt=octocat]
