@@ -9,4 +9,4 @@ The plan is to separate out the tutorial videos and "most up-to-date version." F
 
 
 
-![alt tag](https://pythonprogramming.net/static/images/pythonplaysgtav/self-driving-car-grand-theft-auto-5.gif)
+![hello](https://pythonprogramming.net/static/images/pythonplaysgtav/self-driving-car-grand-theft-auto-5.gif)
