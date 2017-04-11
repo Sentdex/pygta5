@@ -1,6 +1,7 @@
 import numpy as np
 from PIL import ImageGrab
 import cv2
+import time
 
 def screen_record(): 
     last_time = time.time()
