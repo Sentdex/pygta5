@@ -1,11 +1,9 @@
 import numpy as np
-from PIL import ImageGrab
 import cv2
 import time
 import pyautogui
-
+from grabscreen import grab_screen
 from directkeys import PressKey,ReleaseKey, W, A, S, D
-
 from draw_lanes import draw_lanes
 
 def roi(img, vertices):
