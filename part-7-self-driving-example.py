@@ -3,6 +3,7 @@ from PIL import ImageGrab
 import cv2
 import time
 import pyautogui
+import PID
 from numpy import ones,vstack
 from numpy.linalg import lstsq
 from directkeys import PressKey,ReleaseKey, W, A, S, D
@@ -179,6 +180,33 @@ for i in list(range(4))[::-1]:
 
 
 last_time = time.time()
+
+delay_time = 25
+
+# P, I and D parameters control how aggressive/erratic the PID controller is. (higher values => more aggressive)
+# To tune the controller incrementally adjust a single parameter at a time, start with P
+# 
+# Proportional Parameter
+# Start with P as a very small value, incremenatally increase P until the system becomes unstable
+P = 0.01
+# 
+# After P has been set correctly: start incrementally increasing D (derivative parameter) to a small value
+D = 0.0
+# 
+# After D has been set: start incrementally increasing I (integral parameter)
+I = 0.0
+
+pid = PID.PID(P, I, D)
+
+# Setpoint (the desired) value
+# PID controller attempts to compensate for the error between the feedback and setpoint by adjusting the output accordingly
+# In this case the setpoint is 0, as we ideally want: (vehicle_heading - lane_angle_feedback) to equal 0
+pid.SetPoint=0.0
+
+# Run the PID loop every 25 milliseconds
+pid.setSampleTime(float(delay_time)/1000.0)
+
+
 while True:
     screen =  np.array(ImageGrab.grab(bbox=(0,40,800,640)))
     print('Frame took {} seconds'.format(time.time()-last_time))
@@ -187,17 +215,21 @@ while True:
     #cv2.imshow('window', new_screen)
     cv2.imshow('window2',cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB))
 
+    # Our feedback value for the PID controller is the average of the two lane angles
+    feedback_angle = float(m1 + m2) / 2
+    pid.update(feedback_angle)
 
-
-    if m1 < 0 and m2 < 0:
+    # For more presise control: variable timing of the keypresses should be implemented
+    # Keypress time should be proportional to the magnitude of pid.output
+    if pid.output > 0:
         right()
-    elif m1 > 0  and m2 > 0:
+    elif pid.output < 0:
         left()
     else:
         straight()
     
     #cv2.imshow('window',cv2.cvtColor(screen, cv2.COLOR_BGR2RGB))
-    if cv2.waitKey(25) & 0xFF == ord('q'):
+    if cv2.waitKey(delay_time) & 0xFF == ord('q'):
         cv2.destroyAllWindows()
         break
 
