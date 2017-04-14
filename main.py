@@ -2,10 +2,6 @@ import numpy as np
 import cv2
 import time
 import pyautogui
-<<<<<<< HEAD
-=======
-from grabscreen import grab_screen
->>>>>>> origin/master
 from directkeys import PressKey,ReleaseKey, W, A, S, D
 from draw_lanes import draw_lanes
 from grabscreen import grab_screen
