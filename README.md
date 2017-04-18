@@ -1,16 +1,12 @@
 # pygta5
 Explorations of Using Python to play Grand Theft Auto 5.
 
-Pull requests welcome.
+Pull requests welcome. At the moment, we mostly need PID control. If you know how to help us there, please do!
 
-As time goes on, I will edit this with more useful information. 
+Currently, to use the latest version of this AI, you will need to run first "create_training_data.py," then balance this data with "balance_Data.py."
 
-The plan is to separate out the tutorial videos and "most up-to-date version." For now, I'm just exploring our possibilities of what we can actually do with Python and GTA V.
+Do this for as many files/training samples as you wish. I suggest 100K+ after balancing, but the more the merrier.
 
-The files with "part" in them are from specific tutorials. 
+Next, Train the model with train_model.py.
 
-The actual main files here are:
-
-main.py - runs the program
-directkeys.py - handles key inputs
-draw_lanes.py - finds the two "most likely" lanes out of all of the lines.
+Finally, use it with tesT_model.py. 
