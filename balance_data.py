@@ -11,6 +11,10 @@ df = pd.DataFrame(train_data)
 print(df.head())
 print(Counter(df[1].apply(str)))
 
+CHOICE_LEFT = [1, 0, 0]
+CHOICE_FORWARD = [0, 1, 0]
+CHOICE_RIGHT = [0, 0, 1]
+
 lefts = []
 rights = []
 forwards = []
@@ -21,15 +25,14 @@ for data in train_data:
     img = data[0]
     choice = data[1]
 
-    if choice == [1,0,0]:
-        lefts.append([img,choice])
-    elif choice == [0,1,0]:
-        forwards.append([img,choice])
-    elif choice == [0,0,1]:
-        rights.append([img,choice])
+    if choice == CHOICE_LEFT:
+        lefts.append([img, choice])
+    elif choice == CHOICE_FORWARD:
+        forwards.append([img, choice])
+    elif choice == CHOICE_RIGHT:
+        rights.append([img, choice])
     else:
         print('no matches')
-
 
 forwards = forwards[:len(lefts)][:len(rights)]
 lefts = lefts[:len(forwards)]
@@ -39,7 +42,3 @@ final_data = forwards + lefts + rights
 shuffle(final_data)
 
 np.save('training_data.npy', final_data)
-
-
-
-
