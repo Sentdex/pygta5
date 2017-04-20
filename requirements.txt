@@ -1,0 +1,6 @@
+numpy
+pandas
+tensorflow
+opencv-python
+pypiwin32
+tflearn

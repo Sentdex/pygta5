@@ -1,12 +1,10 @@
 import numpy as np
-from PIL import ImageGrab
 import cv2
 import time
 import pyautogui
-
 from directkeys import PressKey,ReleaseKey, W, A, S, D
-
 from draw_lanes import draw_lanes
+from grabscreen import grab_screen
 
 def roi(img, vertices):
     
@@ -92,15 +90,13 @@ for i in list(range(4))[::-1]:
 
 last_time = time.time()
 while True:
-    screen =  np.array(ImageGrab.grab(bbox=(0,40,800,640)))
+    screen = grab_screen(region=(0,40,800,640))
     print('Frame took {} seconds'.format(time.time()-last_time))
     last_time = time.time()
     new_screen,original_image, m1, m2 = process_img(screen)
     #cv2.imshow('window', new_screen)
     cv2.imshow('window2',cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB))
-
-
-
+    
     if m1 < 0 and m2 < 0:
         right()
     elif m1 > 0  and m2 > 0:
