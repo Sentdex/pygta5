@@ -1,4 +1,5 @@
-# pygta5
+# Python Plays Grand Theft Auto 5 for self driving vehicles and more
+
 Explorations of Using Python to play Grand Theft Auto 5, mainly for the purposes of creating self-driving cars and other vehicles.
 
 We read frames directly from the desktop, rather than working with the game's code itself. This means it works with more games than just GTA V.
