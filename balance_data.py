@@ -9,7 +9,7 @@ train_data = np.load('training_data.npy')
 
 df = pd.DataFrame(train_data)
 print(df.head())
-print(Counter(df[1].apply(str)))
+print(Counter(df[1].count()))
 
 lefts = []
 rights = []
@@ -31,9 +31,10 @@ for data in train_data:
         print('no matches')
 
 
-forwards = forwards[:len(lefts)][:len(rights)]
-lefts = lefts[:len(forwards)]
-rights = rights[:len(forwards)]
+train_len = len(min(lefts,rights)) #take the len of which ever list is shorter & reduce to that
+forwards = forwards[:train_len]
+lefts = lefts[train_len]
+rights = rights[train_len]
 
 final_data = forwards + lefts + rights
 shuffle(final_data)
