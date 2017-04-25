@@ -20,8 +20,11 @@ def keys_to_output(keys):
         output[0] = 1
     elif 'D' in keys:
         output[2] = 1
-    else:
+    elif 'W' in keys:
         output[1] = 1
+    else:
+        #dont do anything
+        output = [0,0,0]
     return output
 
 
@@ -54,7 +57,10 @@ def main():
             # resize to something a bit more acceptable for a CNN
             keys = key_check()
             output = keys_to_output(keys)
-            training_data.append([screen,output])
+            
+            #if the user pressed a key
+            if output != [0,0,0]:
+                training_data.append([screen,output])
             
             if len(training_data) % 1000 == 0:
                 print(len(training_data))
