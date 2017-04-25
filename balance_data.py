@@ -33,8 +33,8 @@ for data in train_data:
 
 train_len = len(min(lefts,rights)) #take the len of which ever list is shorter & reduce to that
 forwards = forwards[:train_len]
-lefts = lefts[train_len]
-rights = rights[train_len]
+lefts = lefts[:train_len]
+rights = rights[:train_len]
 
 final_data = forwards + lefts + rights
 shuffle(final_data)
