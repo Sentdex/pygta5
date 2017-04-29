@@ -1,7 +1,7 @@
 # create_training_data.py
 
 import numpy as np
-from grabscreen import grab_screen
+from grabscreen import screengrabber
 import cv2
 import time
 from getkeys import key_check
@@ -43,11 +43,12 @@ def main():
 
 
     paused = False
+    scgr = screengrabber(region=(0,40,800,640))
     while(True):
 
         if not paused:
             # 800x600 windowed mode
-            screen = grab_screen(region=(0,40,800,640))
+            screen = scgr.grab()
             last_time = time.time()
             screen = cv2.cvtColor(screen, cv2.COLOR_BGR2GRAY)
             screen = cv2.resize(screen, (160,120))
