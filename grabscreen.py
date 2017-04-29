@@ -32,7 +32,7 @@ class screengrabber:
         win32gui.ReleaseDC(self.hwin, self.hwindc)
         win32gui.DeleteObject(self.bmp.GetHandle())
 
-    def get(self):
+    def grab(self):
         signedIntsArray = self.bmp.GetBitmapBits(True)
         img = np.fromstring(signedIntsArray, dtype='uint8')
         img.shape = (self.height, self.width, 4)
