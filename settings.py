@@ -9,3 +9,6 @@ RESIZE_HEIGHT = 120
 TRAINING_DATA_PATH = 'training_data.npy'
 
 PAUSE_KEY = 'T'
+
+FWD_THRESH = 0.7
+TURN_THRESH = 0.75
