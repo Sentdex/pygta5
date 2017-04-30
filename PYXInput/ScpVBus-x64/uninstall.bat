@@ -1,0 +1,1 @@
+devcon.exe remove Root\ScpVBus

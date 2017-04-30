@@ -1,0 +1,82 @@
+;
+; ScpVBus.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%ManufacturerName%
+CatalogFile=ScpVBus.cat
+DriverVer=04/19/2016,22.52.24.182
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+; ================= Class section =====================
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+ScpVBus.sys  = 1,,
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName%=SCProductions,NTamd64
+
+[SCProductions.NTamd64]
+%ScpVBus.DeviceDesc%=ScpVBus_Device, Root\ScpVBus
+
+[ScpVBus_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+ScpVBus.sys
+
+;-------------- Service installation
+[ScpVBus_Device.NT.Services]
+AddService = ScpVBus,%SPSVCINST_ASSOCSERVICE%, ScpVBus_Service_Inst
+
+; -------------- ScpVBus driver install sections
+[ScpVBus_Service_Inst]
+DisplayName    = %ScpVBus.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\ScpVBus.sys
+
+;
+;--- ScpVBus_Device Coinstaller installation ------
+;
+
+[DestinationDirs]
+ScpVBus_Device_CoInstaller_CopyFiles = 11
+
+[ScpVBus_Device.NT.CoInstallers]
+AddReg=ScpVBus_Device_CoInstaller_AddReg
+CopyFiles=ScpVBus_Device_CoInstaller_CopyFiles
+
+[ScpVBus_Device_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller01009.dll,WdfCoInstaller"
+
+[ScpVBus_Device_CoInstaller_CopyFiles]
+WdfCoInstaller01009.dll
+
+[SourceDisksFiles]
+WdfCoInstaller01009.dll=1 ; make sure the number matches with SourceDisksNames
+
+[ScpVBus_Device.NT.Wdf]
+KmdfService =  ScpVBus, ScpVBus_wdfsect
+[ScpVBus_wdfsect]
+KmdfLibraryVersion = 1.9
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ManufacturerName="Nefarius Software Solutions"
+DiskName = "Scp Virtual Bus Installation Media"
+ScpVBus.DeviceDesc = "Scp Virtual Bus Driver"
+ScpVBus.SVCDESC = "Scp Virtual Bus Driver"
