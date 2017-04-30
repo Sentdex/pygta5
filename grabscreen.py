@@ -9,7 +9,6 @@ class Camera(object):#Pass the window title e.g. 'Grand Theft Auto V'
         self.hwnd = FindWindow(None, title)
         SetForegroundWindow(self.hwnd)
 
-
     def screenshot(self):
         while 1:
             self.bbox = GetWindowRect(self.hwnd)
