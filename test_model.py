@@ -1,7 +1,7 @@
 # test_model.py
 
 import numpy as np
-from grabscreen import grab_screen
+from grabscreen
 import cv2
 import time
 from directkeys import PressKey,ReleaseKey, W, A, S, D
@@ -15,6 +15,9 @@ HEIGHT = 120
 LR = 1e-3
 EPOCHS = 10
 MODEL_NAME = 'pygta5-car-fast-{}-{}-{}-epochs-300K-data.model'.format(LR, 'alexnetv2',EPOCHS)
+window_name = 'Grand Theft Auto V'
+
+camera = Camera(window_name)
 
 t_time = 0.09
 
@@ -59,7 +62,7 @@ def main():
         if not paused:
             # 800x600 windowed mode
             #screen =  np.array(ImageGrab.grab(bbox=(0,40,800,640)))
-            screen = grab_screen(region=(0,40,800,640))
+            screen = camera.screenshot()
             print('loop took {} seconds'.format(time.time()-last_time))
             last_time = time.time()
             screen = cv2.cvtColor(screen, cv2.COLOR_BGR2GRAY)
@@ -95,9 +98,6 @@ def main():
                 time.sleep(1)
 
 main()       
-
-
-
 
 
 
