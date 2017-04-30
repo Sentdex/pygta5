@@ -27,7 +27,7 @@ def keys_to_output(keys):
 file_name = 'training_data.npy'
 window_name = 'Grand Theft Auto V'
 
-camera = grab_screen.Camera(window_name)
+camera = grabscreen.Camera(window_name)
 
 if os.path.isfile(file_name):
     print('File exists, loading previous data!')
