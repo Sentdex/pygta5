@@ -97,9 +97,11 @@ def main():
             prediction = model.predict([screen.reshape(160, 120, 1)])[0]
             print(prediction)
 
+            # Lowered turn threshhold
             turn_thresh = 0.30
             fwd_thresh = 0.70
 
+            # Set turn and forward to the prediction %
             if prediction[1] > fwd_thresh:
                 straight(controller, prediction[1])
             elif prediction[0] > turn_thresh:
@@ -119,6 +121,8 @@ def main():
                 time.sleep(1)
             else:
                 paused = True
+
+                # Stop on pause
                 stop(controller)
                 # ReleaseKey(A)
                 # ReleaseKey(W)
