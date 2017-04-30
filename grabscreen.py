@@ -16,7 +16,4 @@ class Camera(object):#Pass the window title e.g. 'Grand Theft Auto V'
             self.bbox = GetWindowRect(self.hwnd)
             img = ImageGrab.grab(self.bbox)
 
-            if img.size[0] > 1:
-                break
-
         return img
