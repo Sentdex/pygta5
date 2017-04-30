@@ -1,7 +1,7 @@
 # test_model.py
 
 import numpy as np
-from grabscreen
+import grabscreen
 import cv2
 import time
 from directkeys import PressKey,ReleaseKey, W, A, S, D
@@ -17,7 +17,7 @@ EPOCHS = 10
 MODEL_NAME = 'pygta5-car-fast-{}-{}-{}-epochs-300K-data.model'.format(LR, 'alexnetv2',EPOCHS)
 window_name = 'Grand Theft Auto V'
 
-camera = Camera(window_name)
+camera = grabscreen.Camera(window_name)
 
 t_time = 0.09
 
