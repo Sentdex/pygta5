@@ -25,7 +25,7 @@ def keys_to_output(keys):
 
 
 file_name = 'training_data.npy'
-window_name= 'Grand Theft Auto V'
+window_name = 'Grand Theft Auto V'
 # Someone please check if ^ works. I don't have GTA V
 # , but it did work on the steam window at about 20fps.
 
