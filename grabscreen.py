@@ -1,6 +1,7 @@
 # Done by Colton-Bryce
 from PIL import ImageGrab
-from win32gui import FindWindow, SetForegroundWindow, GetWindowRect
+from win32gui import FindWindow, SetForegroundWindow, GetWindowRect, ShowWindow
+from win32con import SW_SHOWNOACTIVATE
 
 class Camera(object):#Pass the window title e.g. 'Grand Theft Auto V'
     #Make sure the window is on your main monitor or you will get a black screen
@@ -8,6 +9,7 @@ class Camera(object):#Pass the window title e.g. 'Grand Theft Auto V'
     def __init__(self, title):
         self.hwnd = FindWindow(None, title)
         SetForegroundWindow(self.hwnd)
+        ShowWindow(self.hwnd, SW_SHOWNOACTIVATE)
 
     def screenshot(self):
         while 1:
