@@ -82,6 +82,8 @@ class Controller(object):
             DpadLeft    , Clear Dpad and Set Left
             DpadRight   , Clear Dpad and Set Right
             DpadInt     , Set custom Dpad; refer DPAD contants
+            TriggerL    , Left Trigger
+            TriggerR    , Right Trigger
 
         """
         func = getattr(xinput, 'Set' + control)

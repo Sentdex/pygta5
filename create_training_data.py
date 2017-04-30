@@ -36,10 +36,11 @@ def keys_to_output(controller_id):
 
     state = get_state(controller_id)
     output = [0, 0, 0]
+    deadzone = 4000
 
-    if state.left_trigger < 0:
+    if state.left_trigger < -deadzone:
         output[0] = round(state.thumb_lx / -32768, 2)
-    elif state.left_trigger > 0:
+    elif state.left_trigger > deadzone:
         output[2] = round(state.thumb_lx / 32767, 2)
     else:
         output[1] = round(state.thumb_lx / 255, 2)
