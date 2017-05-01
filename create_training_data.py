@@ -34,7 +34,7 @@ def keys_to_output(controller_id):
     [%Left,%RightTrigger,%Right] boolean values.
     '''
 
-    state = get_state(controller_id)
+    state = get_state(controller_id).XINPUT_GAMEPAD
     output = [0, 0, 0]
     deadzone = 4000
 
