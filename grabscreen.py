@@ -23,8 +23,6 @@ class screengrabber:
         self.memdc = self.srcdc.CreateCompatibleDC()
         self.bmp = win32ui.CreateBitmap()
         self.bmp.CreateCompatibleBitmap(self.srcdc, self.width, self.height)
-        self.memdc.SelectObject(self.bmp)
-        self.memdc.BitBlt((0, 0), (self.width, self.height), self.srcdc, (self.left, self.top), win32con.SRCCOPY)
 
     def __del__(self):
         self.srcdc.DeleteDC()
@@ -33,6 +31,8 @@ class screengrabber:
         win32gui.DeleteObject(self.bmp.GetHandle())
 
     def grab(self):
+        self.memdc.SelectObject(self.bmp)
+        self.memdc.BitBlt((0, 0), (self.width, self.height), self.srcdc, (self.left, self.top), win32con.SRCCOPY)
         signedIntsArray = self.bmp.GetBitmapBits(True)
         img = np.fromstring(signedIntsArray, dtype='uint8')
         img.shape = (self.height, self.width, 4)
