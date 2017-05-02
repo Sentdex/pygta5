@@ -12,8 +12,7 @@ class Camera(object):#Pass the window title e.g. 'Grand Theft Auto V'
         ShowWindow(self.hwnd, SW_SHOWNOACTIVATE)
 
     def screenshot(self):
-        while 1:
-            self.bbox = GetWindowRect(self.hwnd)
-            img = ImageGrab.grab(self.bbox)
+        self.bbox = GetWindowRect(self.hwnd)
+        img = ImageGrab.grab(self.bbox)
 
         return img
