@@ -8,7 +8,7 @@ class Camera(object):#Pass the window title e.g. 'Grand Theft Auto V'
 
     def __init__(self, title):
         self.hwnd = FindWindow(None, title)
-         if self.hwnd == 0:
+         if not self.hwnd:
             raise Exception('Invalid window title')
         SetForegroundWindow(self.hwnd)
         ShowWindow(self.hwnd, SW_SHOWNOACTIVATE)
