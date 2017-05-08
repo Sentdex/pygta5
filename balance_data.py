@@ -4,6 +4,11 @@ import numpy as np
 import pandas as pd
 from collections import Counter
 from random import shuffle
+from settings import (
+ LEFT,
+ FORWARD,
+ RIGHT
+)
 
 train_data = np.load('training_data.npy')
 
@@ -21,15 +26,14 @@ for data in train_data:
     img = data[0]
     choice = data[1]
 
-    if choice == [1,0,0]:
-        lefts.append([img,choice])
-    elif choice == [0,1,0]:
-        forwards.append([img,choice])
-    elif choice == [0,0,1]:
-        rights.append([img,choice])
+    if choice == LEFT:
+        lefts.append([img, choice])
+    elif choice == FORWARD:
+        forwards.append([img, choice])
+    elif choice == RIGHT:
+        rights.append([img, choice])
     else:
         print('no matches')
-
 
 forwards = forwards[:len(lefts)][:len(rights)]
 lefts = lefts[:len(forwards)]
@@ -39,7 +43,3 @@ final_data = forwards + lefts + rights
 shuffle(final_data)
 
 np.save('training_data.npy', final_data)
-
-
-
-

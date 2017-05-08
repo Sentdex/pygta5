@@ -1,14 +1,22 @@
 # test_model.py
 
-import numpy as np
-from grabscreen import grab_screen
-import cv2
 import time
-from directkeys import PressKey,ReleaseKey, W, A, S, D
-from alexnet import alexnet
-from getkeys import key_check
+import cv2
 
-import random
+from alexnet import alexnet
+from directkeys import (
+    PressKey,
+    ReleaseKey
+)
+from getkeys import key_check
+from grabscreen import grab_screen
+from settings import (
+    W,
+    A,
+    S,
+    D
+)
+
 
 WIDTH = 160
 HEIGHT = 120
@@ -95,13 +103,3 @@ def main():
                 time.sleep(1)
 
 main()       
-
-
-
-
-
-
-
-
-
-
