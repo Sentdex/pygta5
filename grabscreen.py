@@ -23,8 +23,10 @@ def grab_screen(region=None, title=None):
         win_width = win_x2 - win_left +1
         win_height = win_y2 - win_top +1
         # differnce in the H and W are the bounding of the title bar and window
-        left = win_width - width
-        top = win_height - height
+        x_scale = win_width // width
+        y_scale = win_height // height
+        left = win_width - width * x_scale
+        top = win_height - height * y_scale
     else:
         hwin = win32gui.GetDesktopWindow()
         width = win32api.GetSystemMetrics(win32con.SM_CXVIRTUALSCREEN)
