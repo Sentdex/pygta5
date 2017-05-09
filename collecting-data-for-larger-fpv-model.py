@@ -82,7 +82,7 @@ def main():
 
         if not paused:
             # 800x600 windowed mode
-            screen = grab_screen(region=(0,40,800,640))
+            screen = grab_screen(title='Grand Theft Auto V')
             last_time = time.time()
             screen = cv2.cvtColor(screen, cv2.COLOR_BGR2GRAY)
             screen = cv2.resize(screen, (160,120))
