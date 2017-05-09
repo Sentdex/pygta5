@@ -84,8 +84,8 @@ def main():
             # 800x600 windowed mode
             screen = grab_screen(title='Grand Theft Auto V')
             last_time = time.time()
-            screen = cv2.cvtColor(screen, cv2.COLOR_BGR2GRAY)
-            screen = cv2.resize(screen, (160,120))
+            screen = cv2.cvtColor(screen, cv2.COLOR_BGR2RGB)
+            screen = cv2.resize(screen, (160,90))
             # resize to something a bit more acceptable for a CNN
             keys = key_check()
             output = keys_to_output(keys)
