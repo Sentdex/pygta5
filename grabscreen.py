@@ -5,30 +5,20 @@ import numpy as np
 import win32gui, win32ui, win32con, win32api
 
 def grab_screen(region=None, title=None):
-
+    hwin = win32gui.GetDesktopWindow()
     if region:
-        hwin = win32gui.GetDesktopWindow()
         left,top,x2,y2 = region
         width = x2 - left + 1
         height = y2 - top + 1
     elif title:
-        hwin = win32gui.FindWindow(None, title)
-        if not hwin:
+        gtawin = win32gui.FindWindow(None, title)
+        if not gtawin:
             raise Exception('window title not found')
         #get the bounding box of the window
-        win_left, win_top, win_x2, win_y2 = win32gui.GetWindowRect(hwin)
-        # get the box of the client part, left and top are always 0,0 so x2,y2
-        # are always height and width
-        left, top, width, height = win32gui.GetClientRect(hwin)
-        win_width = win_x2 - win_left +1
-        win_height = win_y2 - win_top +1
-        # differnce in the H and W are the bounding of the title bar and window
-        x_scale = win_width // width
-        y_scale = win_height // height
-        left = win_width - width * x_scale
-        top = win_height - height * y_scale
+        left, top, x2, y2 = win32gui.GetWindowRect(gtawin)
+        width = x2 - left +1
+        height = y2 - top +1
     else:
-        hwin = win32gui.GetDesktopWindow()
         width = win32api.GetSystemMetrics(win32con.SM_CXVIRTUALSCREEN)
         height = win32api.GetSystemMetrics(win32con.SM_CYVIRTUALSCREEN)
         left = win32api.GetSystemMetrics(win32con.SM_XVIRTUALSCREEN)
