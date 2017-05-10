@@ -1,6 +1,12 @@
 '''
 This file is meant to collect data for the latest model.
 
+*** DO NOT BALANCE THIS DATA ***
+*** DO NOT BALANCE THIS DATA ***
+*** DO NOT BALANCE THIS DATA ***
+
+Leave the data in raw form. It must be raw so I can use it for recurrent layers/motion/optical flow...etc. 
+
 The data should be first person view data with the *HOOD CAMERA* in an armored Karuma. 
 
 I mainly train during day, but I would like more data from other times of day/weather, so feel free to submit whatever you like. 
