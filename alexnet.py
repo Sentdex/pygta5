@@ -37,7 +37,7 @@ def alexnet(width, height, lr):
                          learning_rate=lr, name='targets')
 
     model = tflearn.DNN(network, checkpoint_path='model_alexnet',
-                        max_checkpoints=1, tensorboard_verbose=2, tensorboard_dir='log')
+                        max_checkpoints=1, tensorboard_verbose=0, tensorboard_dir='log')
 
     return model
 
