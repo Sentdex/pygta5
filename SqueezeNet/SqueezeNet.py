@@ -12,9 +12,9 @@ import numpy as np
 #y = tf.placeholder(tf.float32,(None,10))
 #keep_prob = tf.placeholder(tf.float32)
 
-def getSqueezeNetModel(x,y,keep_prob,learning_rate=1e-3):
-    activations = []
+activations = []
 
+def getSqueezeNetModel(x,y,keep_prob,learning_rate=1e-3):
     activations.append(x)
 
     classCount = y.get_shape().as_list()[1]

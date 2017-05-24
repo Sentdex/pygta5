@@ -72,10 +72,10 @@ def main():
             print('loop took {} seconds'.format(time.time()-last_time))
             last_time = time.time()
             screen = cv2.cvtColor(screen, cv2.COLOR_BGR2GRAY)
-            screen = cv2.resize(screen, (160,120))
+            screen = cv2.resize(screen, (WIDTH,HEIGHT))
 
             #prediction = model.predict([screen.reshape(160,120,1)])[0]
-            prediction = model.eval({x:screen.reshape(1,160,120,1),keep_prob:1})[0]
+            prediction = model.eval({x:screen.reshape(1,WIDTH,HEIGHT,1),keep_prob:1})[0]
             decision = np.argmax(prediction)
             print(decision,prediction)
             
