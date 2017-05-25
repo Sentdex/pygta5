@@ -119,7 +119,7 @@ def test():
     vj.sendButtons(0)
     print("vj closing", flush=True)
     vj.close()
-
+    
 
 def test2():
     time.sleep(3)
@@ -143,10 +143,8 @@ def test2():
     
     reset = vj.generateJoystickPosition()
     setJoy(0, 0, scale)
-    
     vj.close()
-
-
+    
 
 def test3():
     time.sleep(5)
@@ -156,25 +154,20 @@ def test3():
     time.sleep(2)
     print("sending axes", flush=True)
 
-
-    
+    scale = 10000.0
     pos = int(15000*scale)
-    joystickPosition = vj.generateJoystickPosition(wThrottle = 16000+Pos)
+    joystickPosition = vj.generateJoystickPosition(wThrottle = 16000+pos)
     vj.update(joystickPosition)
-
-
+    
     time.sleep(5)
+    
     joystickPosition = vj.generateJoystickPosition(wThrottle = 0)
     vj.update(joystickPosition)
     #vj.sendButtons(0)
-
-    
     print("vj closing", flush=True)
     vj.close()
 
 
-
-    
-
 if __name__ == '__main__':
     test3()
+
