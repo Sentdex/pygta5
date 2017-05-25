@@ -1,6 +1,6 @@
 # step 1: https://sourceforge.net/projects/vjoystick/files/latest/download
 # step 2: SDK: http://vjoystick.sourceforge.net/site/index.php/component/weblinks/weblink/13-uncategorised/11-redirect-vjoy2sdk?task=weblink.go
-# step 3: CONST_DLL_VJOY = "vJoyInterface.dll" ...KEEP .DLL local? 
+# step 3: CONST_DLL_VJOY = "vJoyInterface.dll" ...KEEP .DLL local? For me, putting it in system32 didn't work.
 # step 4: http://www.x360ce.com/, 64 bit download
 # step 5: extract, copy to gtav directory
 # step 6: run, should auto-detect vjoy, test with example make sure it works.
