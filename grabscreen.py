@@ -4,14 +4,20 @@ import cv2
 import numpy as np
 import win32gui, win32ui, win32con, win32api
 
-def grab_screen(region=None):
-
+def grab_screen(region=None, title=None):
     hwin = win32gui.GetDesktopWindow()
-
     if region:
-            left,top,x2,y2 = region
-            width = x2 - left + 1
-            height = y2 - top + 1
+        left,top,x2,y2 = region
+        width = x2 - left + 1
+        height = y2 - top + 1
+    elif title:
+        gtawin = win32gui.FindWindow(None, title)
+        if not gtawin:
+            raise Exception('window title not found')
+        #get the bounding box of the window
+        left, top, x2, y2 = win32gui.GetWindowRect(gtawin)
+        width = x2 - left +1
+        height = y2 - top +1
     else:
         width = win32api.GetSystemMetrics(win32con.SM_CXVIRTUALSCREEN)
         height = win32api.GetSystemMetrics(win32con.SM_CYVIRTUALSCREEN)
