@@ -7,11 +7,9 @@ This file is meant to collect data for the latest model.
 
 Leave the data in raw form. It must be raw so I can use it for recurrent layers/motion/optical flow...etc. 
 
-Try to keep file sizes to ~4K frames and less than 200 MB
+Try to keep file sizes to 1K frames
 
-The data should be first person view data with the *HOOD CAMERA* in an armored Karuma. 
-
-I mainly train during day, but I would like more data from other times of day/weather, so feel free to submit whatever you like. 
+The data should be first person view data with the *HOOD CAMERA* in any vehicle that doesn't have a hood/front end that severely blocks seeing. 
 
 I will check all data for fitment to AI (basically how close does my AI predict the data you submit) to validate 
 against people trying to submit bad data. 
