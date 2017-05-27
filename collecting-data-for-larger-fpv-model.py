@@ -7,8 +7,6 @@ This file is meant to collect data for the latest model.
 
 Leave the data in raw form. It must be raw so I can use it for recurrent layers/motion/optical flow...etc. 
 
-Try to keep file sizes to 1K frames
-
 The data should be first person view data with the *HOOD CAMERA* in any vehicle that doesn't have a hood/front end that severely blocks seeing. 
 
 I will check all data for fitment to AI (basically how close does my AI predict the data you submit) to validate 
@@ -93,7 +91,7 @@ def main(file_name, starting_value):
     while(True):
         
         if not paused:
-            # 800x600 windowed mode
+            # windowed mode, this is 1920x1080, but you can change this to suit whatever res you're running.
             screen = grab_screen(region=(0,40,1920,1120))
             last_time = time.time()
             # resize to something a bit more acceptable for a CNN
