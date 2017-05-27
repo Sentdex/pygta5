@@ -91,7 +91,7 @@ def main():
             screen = grab_screen(region=(0,40,1280,720))
             last_time = time.time()
             screen = cv2.cvtColor(screen, cv2.COLOR_BGR2RGB)
-            screen = cv2.resize(screen, (640,360))
+            screen = cv2.resize(screen, (480,270))
             # resize to something a bit more acceptable for a CNN
             keys = key_check()
             output = keys_to_output(keys)
