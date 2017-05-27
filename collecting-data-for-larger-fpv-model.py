@@ -101,7 +101,7 @@ def main():
             output = keys_to_output(keys)
             training_data.append([screen,output])
             
-            if len(training_data) % 1000 == 0:
+            if len(training_data) % 500 == 0:
                 print(len(training_data))
                 np.save(file_name,training_data)
                 break
