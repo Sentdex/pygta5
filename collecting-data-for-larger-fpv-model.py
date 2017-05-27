@@ -100,6 +100,7 @@ def main():
             if len(training_data) % 1000 == 0:
                 print(len(training_data))
                 np.save(file_name,training_data)
+                break
 
         keys = key_check()
         if 'T' in keys:
