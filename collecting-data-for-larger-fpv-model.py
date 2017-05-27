@@ -67,14 +67,18 @@ def keys_to_output(keys):
     return output
 
 
-file_name = 'training_data.npy'
 
-if os.path.isfile(file_name):
-    print('File exists, loading previous data!')
-    training_data = list(np.load(file_name))
-else:
-    print('File does not exist, starting fresh!')
-    training_data = []
+starting_value = 486
+
+while True:
+    file_name = 'training_data-{}.npy'.format(starting_value)
+
+    if os.path.isfile(file_name):
+        print('File exists, moving along',starting_value)
+        starting_value += 1
+    else:
+        print('File does not exist, starting fresh!',starting_value)
+        break
 
 
 def main():
