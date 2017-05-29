@@ -1,7 +1,7 @@
 # create_training_data.py
 
 import numpy as np
-from grabscreen import grab_screen
+import grabscreen
 import cv2
 import time
 from getkeys import key_check
@@ -11,7 +11,6 @@ import os
 def keys_to_output(keys):
     '''
     Convert keys to a ...multi-hot... array
-
     [A,W,D] boolean values.
     '''
     output = [0,0,0]
@@ -26,6 +25,9 @@ def keys_to_output(keys):
 
 
 file_name = 'training_data.npy'
+window_name = 'Grand Theft Auto V'
+
+camera = grabscreen.Camera(window_name)
 
 if os.path.isfile(file_name):
     print('File exists, loading previous data!')
@@ -33,8 +35,7 @@ if os.path.isfile(file_name):
 else:
     print('File does not exist, starting fresh!')
     training_data = []
-
-
+    
 def main():
 
     for i in list(range(4))[::-1]:
@@ -47,7 +48,7 @@ def main():
 
         if not paused:
             # 800x600 windowed mode
-            screen = grab_screen(region=(0,40,800,640))
+            screen = camera.screenshot()
             last_time = time.time()
             screen = cv2.cvtColor(screen, cv2.COLOR_BGR2GRAY)
             screen = cv2.resize(screen, (160,120))
