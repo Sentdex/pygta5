@@ -1,7 +1,7 @@
 # test_model.py
 
 import numpy as np
-from grabscreen import grab_screen
+from grabscreen import screengrabber
 import cv2
 import time
 from directkeys import PressKey,ReleaseKey, W, A, S, D
@@ -54,12 +54,13 @@ def main():
         time.sleep(1)
 
     paused = False
+    scgr = screengrabber(region=(0,40,800,640))
     while(True):
         
         if not paused:
             # 800x600 windowed mode
             #screen =  np.array(ImageGrab.grab(bbox=(0,40,800,640)))
-            screen = grab_screen(region=(0,40,800,640))
+            screen = scgr.grab()
             print('loop took {} seconds'.format(time.time()-last_time))
             last_time = time.time()
             screen = cv2.cvtColor(screen, cv2.COLOR_BGR2GRAY)
