@@ -7,7 +7,12 @@ This file is meant to collect data for the latest model.
 
 Leave the data in raw form. It must be raw so I can use it for recurrent layers/motion/optical flow...etc. 
 
-The data should be first person view data with the *HOOD CAMERA* in any vehicle that doesn't have a hood/front end that severely blocks seeing. 
+The data should be first person view data with the *HOOD CAMERA* in an armored Karuma. 
+
+Driving style should be at pace, drive as fast as reasonably possible while avoiding objects and staying on road to the best of
+your ability. There may be times when you drive off road to avoid things, this is fine, just get back on! 
+
+Press "T" to pause data gathering. When you're done, press T, alt-tab out, and close the script. 
 
 I will check all data for fitment to AI (basically how close does my AI predict the data you submit) to validate 
 against people trying to submit bad data. 
