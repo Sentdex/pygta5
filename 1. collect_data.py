@@ -15,7 +15,7 @@ sa = [0,0,0,0,0,0,1,0,0]
 sd = [0,0,0,0,0,0,0,1,0]
 nk = [0,0,0,0,0,0,0,0,1]
 
-starting_value = 1058
+starting_value = 1
 
 while True:
     file_name = 'training_data-{}.npy'.format(starting_value)
