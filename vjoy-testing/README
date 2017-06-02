@@ -1,0 +1,6 @@
+vjoy is a module that emulates a generic controller. 
+Combine this with x360ce, which takes your generic controller and makes it emulate an xbox360 controller, and voila, you have xbox 360 controller emulation. 
+
+I've actually employed this in game and it does work, I just have yet to find a good algorithm to apply to the network output to actually improve the driving performance. 
+
+At the very least, however, I think coming up with something for the throttle control will be wise. Haven't had much time to mess with this, but it's definitely an option now. 
