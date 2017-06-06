@@ -29,13 +29,13 @@ VERSION
     Version 3
 
 '''
-
-
 import cv2
+
 
 def delta_images(t0, t1, t2):
     d1 = cv2.absdiff(t2, t0)
     return d1
+
 
 def motion_detection(t_minus, t_now, t_plus):
     delta_view = delta_images(t_minus, t_now, t_plus)
