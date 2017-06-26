@@ -1,6 +1,6 @@
 import numpy as np
 from grabscreen import grab_screen
-import cv2
+#import cv2
 import time
 from getkeys import key_check
 import os
@@ -16,6 +16,8 @@ sd = [0,0,0,0,0,0,0,1,0]
 nk = [0,0,0,0,0,0,0,0,1]
 
 starting_value = 1
+
+window_title_substring = 'Game'
 
 while True:
     file_name = 'training_data-{}.npy'.format(starting_value)
@@ -72,12 +74,11 @@ def main(file_name, starting_value):
     while(True):
         
         if not paused:
-            screen = grab_screen(region=(0,40,1920,1120))
-            last_time = time.time()
-            # resize to something a bit more acceptable for a CNN
-            screen = cv2.resize(screen, (480,270))
-            # run a color convert:
-            screen = cv2.cvtColor(screen, cv2.COLOR_BGR2RGB)
+            screen = grab_screen(
+                    window_title=window_title_substring,
+                    region=(0,40,1920,1120),
+                    scale=0.25)
+            last_time = time.time()            
             
             keys = key_check()
             output = keys_to_output(keys)
@@ -99,6 +100,7 @@ def main(file_name, starting_value):
                     training_data = []
                     starting_value += 1
                     file_name = 'X:/pygta5/phase7-larger-color/training_data-{}.npy'.format(starting_value)
+
 
                     
         keys = key_check()
