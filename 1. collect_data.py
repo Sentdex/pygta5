@@ -17,7 +17,7 @@ nk = [0,0,0,0,0,0,0,0,1]
 
 starting_value = 1
 
-window_title_substring = 'Game'
+window_title_substring = 'Spyder'
 
 while True:
     file_name = 'training_data-{}.npy'.format(starting_value)

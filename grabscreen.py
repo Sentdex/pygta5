@@ -36,9 +36,9 @@ def grab_screen(scale = 1.0, region=None, window_title='GameIP'):
             grab_screen.screen.cleanup()
         
         if region is None:
-            grab_screen.screen = windows_screen_grab('Game', scale=scale)
+            grab_screen.screen = windows_screen_grab(window_title=window_title, scale=scale)
         else:
-            grab_screen.screen = windows_screen_grab('Game', scale=scale, region=region)
+            grab_screen.screen = windows_screen_grab(window_title=window_title, scale=scale, region=region)
     
     bits = grab_screen.screen.get_screen_bits()
     rgb = grab_screen.screen.get_rgb_from_bits(bits)
