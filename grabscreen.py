@@ -2,10 +2,14 @@
 based on work by Frannecklp
 changes by dandrews
 """
+
 import win32ui
 import win32gui
 import win32con
 import numpy as np
+
+
+
 
 def static_vars(**kwargs):
     def decorate(func):
@@ -15,7 +19,7 @@ def static_vars(**kwargs):
     return decorate
 
 @static_vars(screen=None, _region=None, _scale=1.0)
-def grab_screen(scale = 1.0, region=None, window_title='Game'):
+def grab_screen(scale = 1.0, region=None, window_title='GameIP'):
     
     """
     Grabs screens from windows applications.
@@ -45,15 +49,18 @@ def grab_screen(scale = 1.0, region=None, window_title='Game'):
 
 
 class windows_screen_grab:
-    hwnd = 0
+    _hwnd = 0
     
     def enumHandler(self, hwnd, lParam):
         """
         Callback to find correct window handle.
         """
         if win32gui.IsWindowVisible(hwnd):
-            if self._search_str in win32gui.GetWindowText(hwnd):                
-                self._hwnd = hwnd
+            title = win32gui.GetWindowText(hwnd)            
+            if self._search_str in title:                
+                self._hwnd = hwnd 
+                print(self._search_str + ' found in hwnd ' + str(hwnd))
+                print(title)
 
     def __init__(self, window_title: str, scale = 1.0, region = None):
         """
@@ -63,9 +70,13 @@ class windows_screen_grab:
         """
         self._scale = scale
         self._search_str = window_title
+
         
         # Scan all windows for substring. TODO: check for ambigious substrings
         win32gui.EnumWindows(self.enumHandler, None)
+        if self._hwnd == 0:
+            message = "window_title '{}' not found.".format(window_title)
+            raise ValueError(message)
         hwnd = self._hwnd
              
         if region is None:
