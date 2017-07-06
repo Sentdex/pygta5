@@ -18,32 +18,34 @@ def static_vars(**kwargs):
         return func
     return decorate
 
-@static_vars(screen=None, _region=None, _scale=1.0)
-def grab_screen(scale = 1.0, region=None, window_title='GameIP'):
+@static_vars(screen=None, _region=None, _scale=1.0, _window_title="Game")
+def grab_screen(scale=1.0, region=None, window_title='Game', window_handle=None):
     
     """
     Grabs screens from windows applications.
-    
+    Caches the windows api objects and reuses them as long as you call
+    screen_grab with the same arguements
     Arguments:        
     :parameter scale: float to scale images by.            
     :parameter regions: tuple of (top, left, height, width). None grabs whole screen.   
     :parameter window_title: string to search title bars for. Defaults to 'Game'
     """
     
-    if grab_screen.screen is None or grab_screen._region != region or grab_screen._scale != scale:
+    if grab_screen.screen is None or grab_screen._region != region or grab_screen._scale != scale or grab_screen._window_title != window_title:
         # Cleanup old object and rebuild with new region.
         if grab_screen.screen is not None:
             grab_screen.screen.cleanup()
         
         if region is None:
-            grab_screen.screen = windows_screen_grab(window_title=window_title, scale=scale)
+            grab_screen.screen = windows_screen_grab(window_title=window_title, scale=scale, window_handle=window_handle)
         else:
-            grab_screen.screen = windows_screen_grab(window_title=window_title, scale=scale, region=region)
+            grab_screen.screen = windows_screen_grab(window_title=window_title, scale=scale, region=region, window_handle=window_handle)
     
     bits = grab_screen.screen.get_screen_bits()
     rgb = grab_screen.screen.get_rgb_from_bits(bits)
     grab_screen._region = region
     grab_screen._scale = scale
+    grab_screen._window_title
     return rgb
 
 
@@ -62,7 +64,7 @@ class windows_screen_grab:
                 print(self._search_str + ' found in hwnd ' + str(hwnd))
                 print(title)
 
-    def __init__(self, window_title: str, scale = 1.0, region = None):
+    def __init__(self, window_title: str, scale = 1.0, region = None, window_handle = None):
         """
         :parameter window_title: substring to search for in titles bars. required.
         :parameter scale: float to scale images by.          
@@ -70,13 +72,15 @@ class windows_screen_grab:
         """
         self._scale = scale
         self._search_str = window_title
-
+        if window_handle:        
+            self._hwnd = window_handle
+        else:
+            # Look for window title, case sensitive.            
+            win32gui.EnumWindows(self.enumHandler, None)
+            if self._hwnd == 0:
+                message = "window_title '{}' not found.".format(window_title)
+                raise ValueError(message)
         
-        # Scan all windows for substring. TODO: check for ambigious substrings
-        win32gui.EnumWindows(self.enumHandler, None)
-        if self._hwnd == 0:
-            message = "window_title '{}' not found.".format(window_title)
-            raise ValueError(message)
         hwnd = self._hwnd
              
         if region is None:
@@ -116,7 +120,7 @@ class windows_screen_grab:
     returns: a numpy array of the bits in the format (r, g, b, a, r, g, b, a, ...)
     """
     def get_screen_bits(self):        
-        self._memDC.StretchBlt((0,0), (self._dest_width, self._dest_height), self._windowDC, (self._top, self._left), (self._width,self._height), win32con.SRCCOPY)        
+        self._memDC.StretchBlt((0,0), (self._dest_width, self._dest_height), self._windowDC, (0,0), (self._width,self._height), win32con.SRCCOPY)        
         bits = np.fromstring(self._dataBitMap.GetBitmapBits(True), np.uint8)
         return bits
     
@@ -140,9 +144,17 @@ class windows_screen_grab:
         self._memDC.DeleteDC()
         win32gui.ReleaseDC(self._hwnd, self._w_handle_DC)
         win32gui.DeleteObject(self._dataBitMap.GetHandle())    
-
-
-
+#%%
+if __name__ == "__main__":
+    from matplotlib import pyplot as plt
+    screenshot = grab_screen(window_handle='Command')
+    print(screenshot.shape)
+    plt.imshow(screenshot[0],'Reds')
+    plt.show()
+    plt.imshow(screenshot[1],'Greens')
+    plt.show()
+    plt.imshow(screenshot[2],'Blues')
+    plt.show()
 
 
 
