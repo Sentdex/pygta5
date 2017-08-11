@@ -91,7 +91,7 @@ for e in range(EPOCHS):
             test_x = np.array([i[0] for i in test]).reshape(-1,WIDTH,HEIGHT,3)
             test_y = [i[1] for i in test]
             #Try to change batch size or take it away to see if it affects performance on systems with alot of vram
-            model.fit({'input': X}, {'targets': Y}, n_epoch=1, batch_size=16, validation_set=({'input': test_x}, {'targets': test_y}), 
+            model.fit({'input': X}, {'targets': Y}, n_epoch=1, batch_size=32, validation_set=({'input': test_x}, {'targets': test_y}), 
                 snapshot_step=2500, show_metric=True, run_id=MODEL_NAME)
 
 
