@@ -145,7 +145,7 @@ def main():
             last_time = time.time()
             screen = cv2.resize(screen, (WIDTH,HEIGHT))
 
-            delta_count_last = motion_detection(t_minus, t_now, t_plus)
+            delta_count_last = motion_detection(t_minus, t_now, t_plus, screen)
 
             t_minus = t_now
             t_now = t_plus
