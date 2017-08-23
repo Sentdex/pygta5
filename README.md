@@ -6,15 +6,16 @@ We read frames directly from the desktop, rather than working with the game's co
 
 Pull requests are welcomed.
 
-Currently, to use the latest version of this AI, you will need to run first "create_training_data.py," then balance this data with "balance_Data.py."
-
-When creating training data, this works when you have the game in windowed mode, 800x600 resolution, at the top left of your screen. You need this for both training and testing. Eventually we can go off the window's name, but, for now, the current code wants the window in the corner.
+Currently, to use the latest version of this AI, you will need to run first "1.collect_data.py,"
+When creating training data, this works when you have the game in windowed mode, 1920x1080 resolution. You need this for both training and testing. 
 
 Do this for as many files/training samples as you wish. I suggest 100K+ after balancing, but the more the merrier.
 
-Next, Train the model with train_model.py.
+Next, Train the model with 2.train_model.py.
+Dont forget to set the models name in the file.
 
-Finally, use the model in game with test_model.py. 
+Finally, use the model in game with 3.test_model.py. 
+Dont forget to write what model to load inside of the file.
 
 ...you'll probably want to poke into the tutorials here: https://pythonprogramming.net/game-frames-open-cv-python-plays-gta-v/. If you need tutorials on deep learning, or tensorflow, or tflearn, see here: https://pythonprogramming.net/tensorflow-introduction-machine-learning-tutorial/
 
