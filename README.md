@@ -6,7 +6,7 @@ We read frames directly from the desktop, rather than working with the game's co
 
 Pull requests are welcomed.
 
-Currently, to use the latest version of this AI, you will need to run first "1.collect_data.py,"
+Currently, to use the latest version of this AI, you will need to run first "1.collect_data.py," Change the path to where the trainingdata is supposed to be saved, or you might run into errors.
 When creating training data, this works when you have the game in windowed mode, 1920x1080 resolution. You need this for both training and testing. 
 
 Do this for as many files/training samples as you wish. I suggest 100K+ after balancing, but the more the merrier.
