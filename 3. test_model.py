@@ -187,7 +187,7 @@ def main():
                 no_keys()
                 choice_picked = 'nokeys'
 
-            motion_log.append(delta_count)
+            motion_log.append(delta_count_last)
             motion_avg = round(mean(motion_log),3)
             print('loop took {} seconds. Motion: {}. Choice: {}'.format( round(time.time()-last_time, 3) , motion_avg, choice_picked))
             
