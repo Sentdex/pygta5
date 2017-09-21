@@ -8,7 +8,6 @@ from getkeys import key_check
 from collections import deque, Counter
 import random
 from statistics import mode,mean
-import numpy as np
 from motion import motion_detection
 
 GAME_WIDTH = 1920
