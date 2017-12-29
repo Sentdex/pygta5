@@ -1,3 +1,8 @@
+"""
+based on a pull request by bb20basketball
+adapted by Werseter
+"""
+
 from threading import Thread
 from grabscreen import grab_screen
 import time
