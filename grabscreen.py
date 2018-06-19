@@ -51,7 +51,7 @@ def grab_screen(region=None):
     
     else:
         window = Gdk.get_default_root_window()
-        sz = w.get_geometry()[2:4]
+        sz = window.get_geometry()[2:4]
         if region:
             (x, y, w, h) = region
         else:
