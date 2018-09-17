@@ -6,17 +6,15 @@ import win32gui, win32ui, win32con, win32api
 
 def grab_screen(region=None):
 
-    hwin = win32gui.GetDesktopWindow()
+    hwin = win32gui.FindWindow(None,'Grand Theft Auto V')
+    rect = win32gui.GetWindowRect(hwin)
 
-    if region:
-            left,top,x2,y2 = region
-            width = x2 - left + 1
-            height = y2 - top + 1
-    else:
-        width = win32api.GetSystemMetrics(win32con.SM_CXVIRTUALSCREEN)
-        height = win32api.GetSystemMetrics(win32con.SM_CYVIRTUALSCREEN)
-        left = win32api.GetSystemMetrics(win32con.SM_XVIRTUALSCREEN)
-        top = win32api.GetSystemMetrics(win32con.SM_YVIRTUALSCREEN)
+    x = rect[0]
+    y = rect[1]
+    left = 0
+    top = 40 
+    height = rect[3] - y - top
+    width = rect[2] - x
 
     hwindc = win32gui.GetWindowDC(hwin)
     srcdc = win32ui.CreateDCFromHandle(hwindc)
