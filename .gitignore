@@ -61,3 +61,10 @@ docs/_build/
 # PyBuilder
 target/
 
+# Other
+*.npy
+checkpoint
+log/*
+*.model.*
+*.tfevents.*
+
