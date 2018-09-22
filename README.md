@@ -2,6 +2,8 @@
 
 Explorations of Using Python to play Grand Theft Auto 5, mainly for the purposes of creating self-driving cars and other vehicles.
 
+![image](https://github.com/Sentdex/pygta5/blob/master/self-driving-car-grand-theft-auto-5.gif)
+
 We read frames directly from the desktop, rather than working with the game's code itself. This means it works with more games than just GTA V, and it will basically learn (well, attempt to learn...) whatever you put in front of it based on the frames as input and key presses as output.
 
 Pull requests are welcomed.
