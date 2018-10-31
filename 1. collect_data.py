@@ -98,7 +98,7 @@ def main(file_name, starting_value):
                     print('SAVED')
                     training_data = []
                     starting_value += 1
-                    file_name = 'X:/pygta5/phase7-larger-color/training_data-{}.npy'.format(starting_value)
+                    file_name = 'training_data-{}.npy'.format(starting_value)
 
                     
         keys = key_check()
