@@ -5,27 +5,27 @@ import time
 from getkeys import key_check
 import os
 
-w = [1,0,0,0,0,0,0,0,0]
-s = [0,1,0,0,0,0,0,0,0]
-a = [0,0,1,0,0,0,0,0,0]
-d = [0,0,0,1,0,0,0,0,0]
-wa = [0,0,0,0,1,0,0,0,0]
-wd = [0,0,0,0,0,1,0,0,0]
-sa = [0,0,0,0,0,0,1,0,0]
-sd = [0,0,0,0,0,0,0,1,0]
-nk = [0,0,0,0,0,0,0,0,1]
+up = [1, 0, 0, 0, 0, 0, 0, 0, 0]
+down = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+right = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+left = [0, 0, 0, 1, 0, 0, 0, 0, 0]
+up_right = [0, 0, 0, 0, 1, 0, 0, 0, 0]
+up_left = [0, 0, 0, 0, 0, 1, 0, 0, 0]
+down_right = [0, 0, 0, 0, 0, 0, 1, 0, 0]
+down_left = [0, 0, 0, 0, 0, 0, 0, 1, 0]
+nothing = [0, 0, 0, 0, 0, 0, 0, 0, 1]
 
 starting_value = 1
 
 while True:
-    file_name = 'training_data-{}.npy'.format(starting_value)
+    file_name = './collected_data/training_data-{}.npy'.format(starting_value)
 
     if os.path.isfile(file_name):
-        print('File exists, moving along',starting_value)
+        print('File exists, moving along', starting_value)
         starting_value += 1
     else:
-        print('File does not exist, starting fresh!',starting_value)
-        
+        print('File does not exist, starting fresh!', starting_value)
+
         break
 
 
@@ -35,26 +35,25 @@ def keys_to_output(keys):
      0  1  2  3  4   5   6   7    8
     [W, S, A, D, WA, WD, SA, SD, NOKEY] boolean values.
     '''
-    output = [0,0,0,0,0,0,0,0,0]
-
-    if 'W' in keys and 'A' in keys:
-        output = wa
-    elif 'W' in keys and 'D' in keys:
-        output = wd
-    elif 'S' in keys and 'A' in keys:
-        output = sa
-    elif 'S' in keys and 'D' in keys:
-        output = sd
-    elif 'W' in keys:
-        output = w
-    elif 'S' in keys:
-        output = s
-    elif 'A' in keys:
-        output = a
-    elif 'D' in keys:
-        output = d
+    output = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    if 'up' in keys:
+        output = up
+    elif 'down' in keys:
+        output = up
+    elif 'right' in keys:
+        output = right
+    elif 'left' in keys:
+        output = left
+    elif 'right+down' in keys:
+        output = down_right
+    elif 'right+up' in keys:
+        output = up_right
+    elif 'left+down' in keys:
+        output = down_left
+    elif 'left+up' in keys:
+        output = up_left
     else:
-        output = nk
+        output = nothing
     return output
 
 
@@ -63,44 +62,42 @@ def main(file_name, starting_value):
     starting_value = starting_value
     training_data = []
     for i in list(range(4))[::-1]:
-        print(i+1)
+        print(i + 1)
         time.sleep(1)
 
     last_time = time.time()
     paused = False
     print('STARTING!!!')
-    while(True):
-        
+    while (True):
+
         if not paused:
-            screen = grab_screen(region=(0,40,1920,1120))
+            screen = grab_screen(region=(0, 40, 800, 640))
             last_time = time.time()
             # resize to something a bit more acceptable for a CNN
-            screen = cv2.resize(screen, (480,270))
+            # screen = cv2.resize(screen, (480, 270))
             # run a color convert:
             screen = cv2.cvtColor(screen, cv2.COLOR_BGR2RGB)
-            
+
             keys = key_check()
             output = keys_to_output(keys)
-            training_data.append([screen,output])
+            training_data.append([screen, output])
 
-            #print('loop took {} seconds'.format(time.time()-last_time))
             last_time = time.time()
-##            cv2.imshow('window',cv2.resize(screen,(640,360)))
-##            if cv2.waitKey(25) & 0xFF == ord('q'):
-##                cv2.destroyAllWindows()
-##                break
+            cv2.imshow('window',cv2.resize(screen,(640,360)))
+            if cv2.waitKey(25) & 0xFF == ord('q'):
+               cv2.destroyAllWindows()
+               break
 
             if len(training_data) % 100 == 0:
                 print(len(training_data))
-                
+
                 if len(training_data) == 500:
-                    np.save(file_name,training_data)
+                    np.save(file_name, training_data)
                     print('SAVED')
                     training_data = []
                     starting_value += 1
-                    file_name = 'X:/pygta5/phase7-larger-color/training_data-{}.npy'.format(starting_value)
+                    file_name = './collected_data/training_data-{}.npy'.format(starting_value)
 
-                    
         keys = key_check()
         if 'T' in keys:
             if paused:
