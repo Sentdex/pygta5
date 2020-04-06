@@ -1,11 +1,9 @@
-import os
-import time
-
+import tf2_processing
+rom grabscreen import grab_screen
 import cv2
-import numpy as np
-
+import time
 from getkeys import key_check
-from grabscreen import grab_screen
+import os
 
 up = [1, 0, 0, 0, 0, 0, 0, 0, 0]
 down = [0, 1, 0, 0, 0, 0, 0, 0, 0]
@@ -60,9 +58,7 @@ def keys_to_output(keys):
 
 
 def main(file_name, starting_value):
-    file_name = file_name
-    starting_value = starting_value
-    training_data = []
+
     for i in list(range(4))[::-1]:
         print(i + 1)
         time.sleep(1)
@@ -79,37 +75,8 @@ def main(file_name, starting_value):
             screen = cv2.resize(screen, (480, 270))
             # run a color convert:
             screen = cv2.cvtColor(screen, cv2.COLOR_BGR2RGB)
+            screen = tf2_processing.process_img(screen)
 
             keys = key_check()
             output = keys_to_output(keys)
             training_data.append([screen, output])
-
-            last_time = time.time()
-            # cv2.imshow('window',cv2.resize(screen,(640,360)))
-            # if cv2.waitKey(25) & 0xFF == ord('q'):
-            #    cv2.destroyAllWindows()
-            #    break
-
-            if len(training_data) % 100 == 0:
-                print(len(training_data))
-
-                if len(training_data) == 500:
-                    np.save(file_name, training_data)
-                    print('SAVED')
-                    training_data = []
-                    starting_value += 1
-                    file_name = './collected_data/training_data-{}.npy'.format(starting_value)
-
-        keys = key_check()
-        if 'T' in keys:
-            if paused:
-                paused = False
-                print('unpaused!')
-                time.sleep(1)
-            else:
-                print('Pausing!')
-                paused = True
-                time.sleep(1)
-
-
-main(file_name, starting_value)
