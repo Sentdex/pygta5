@@ -13,13 +13,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 '''
-
 import tflearn
-from tflearn.layers.conv import conv_2d, max_pool_2d,avg_pool_2d, conv_3d, max_pool_3d, avg_pool_3d
+from tflearn.layers.conv import conv_2d, max_pool_2d, avg_pool_2d, conv_3d, max_pool_3d, avg_pool_3d
 from tflearn.layers.core import input_data, dropout, fully_connected
 from tflearn.layers.estimator import regression
-from tflearn.layers.normalization import local_response_normalization
 from tflearn.layers.merge_ops import merge
+from tflearn.layers.normalization import local_response_normalization
+
 
 #used in v0.03-v0.06+
 def otherception3(width, height, frame_count, lr, output=9, model_name = 'otherception.model', device = 'gpu', num = '0'):

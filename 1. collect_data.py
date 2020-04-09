@@ -20,7 +20,8 @@ nothing = [0, 0, 0, 0, 0, 0, 0, 0, 1]
 starting_value = 1
 
 while True:
-    file_name = './collected_data/training_data-{}.npy'.format(starting_value)
+    file_name = './tf_dataset/data/training_data-{}.npy'.format(starting_value)
+    target_file_name = './tf_dataset/target/target_data-{}.npy'.format(starting_value)
 
     if os.path.isfile(file_name):
         print('File exists, moving along', starting_value)
@@ -59,10 +60,14 @@ def keys_to_output(keys):
     return output
 
 
-def main(file_name, starting_value):
+def main(file_name, target_file_name, starting_value):
     file_name = file_name
+    target_file_name = target_file_name
+
     starting_value = starting_value
     training_data = []
+    target_data = []
+
     for i in list(range(4))[::-1]:
         print(i + 1)
         time.sleep(1)
@@ -70,35 +75,31 @@ def main(file_name, starting_value):
     last_time = time.time()
     paused = False
     print('STARTING!!!')
-    while (True):
+    while True:
 
         if not paused:
             screen = grab_screen(region=(0, 40, 800, 640))
-            last_time = time.time()
-            # resize to something a bit more acceptable for a CNN
-            screen = cv2.resize(screen, (480, 270))
-            # run a color convert:
             screen = cv2.cvtColor(screen, cv2.COLOR_BGR2RGB)
 
             keys = key_check()
             output = keys_to_output(keys)
-            training_data.append([screen, output])
+            training_data.append(screen)
+            target_data.append(output)
 
-            last_time = time.time()
-            # cv2.imshow('window',cv2.resize(screen,(640,360)))
-            # if cv2.waitKey(25) & 0xFF == ord('q'):
-            #    cv2.destroyAllWindows()
-            #    break
 
-            if len(training_data) % 100 == 0:
+            if len(training_data) % 50 == 0:
                 print(len(training_data))
 
-                if len(training_data) == 500:
+                if len(training_data) == 200:
                     np.save(file_name, training_data)
+                    np.save(target_file_name, target_data)
+
                     print('SAVED')
                     training_data = []
+                    target_data = []
                     starting_value += 1
-                    file_name = './collected_data/training_data-{}.npy'.format(starting_value)
+                    file_name = './tf_dataset/data/training_data-{}.npy'.format(starting_value)
+                    target_file_name = './tf_dataset/target/target_data-{}.npy'.format(starting_value)
 
         keys = key_check()
         if 'T' in keys:
@@ -112,4 +113,4 @@ def main(file_name, starting_value):
                 time.sleep(1)
 
 
-main(file_name, starting_value)
+main(file_name, target_file_name, starting_value)
