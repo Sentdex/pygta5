@@ -1,4 +1,5 @@
 import random
+from datetime import datetime
 
 import numpy as np
 
@@ -10,7 +11,7 @@ HEIGHT = 270
 LR = 1e-3
 EPOCHS = 30
 n_training_set = 14
-
+today = datetime.today().strftime('%Y%m%d')
 # model = tf.keras.models.load_model("./models/alexnet10")
 model = AlexNet()
 model.compile(optimizer="rmsprop", loss="categorical_crossentropy")
@@ -22,10 +23,10 @@ for e in range(EPOCHS):
     for count, i in enumerate(data_order):
 
         try:
-            file_name = './tf_dataset/data/training_data-{}.npy'.format(i)
+            file_name = './tf_dataset/balanced_data/data_balanced_{}.npy'.format(i)
             # full file info
             train_data = tf2_processing.process(file_name)
-            target_data = np.load("./tf_dataset/target/target_data-{}.npy".format(i))
+            target_data = np.load("./tf_dataset/balanced_target/target_balanced_{}.npy".format(i))
             print('training_data-{}.npy'.format(i), len(train_data))
 
             X_train = train_data[:-10]
@@ -37,7 +38,7 @@ for e in range(EPOCHS):
 
             if count % 10 == 0:
                 print(count, ' SAVING MODEL!')
-                model.save("./models/alexnet{}".format(count))
+                model.save("./models/alexnet{0}-{1}".format(count, today))
 
         except Exception as e:
             print(str(e))
