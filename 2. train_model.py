@@ -96,7 +96,7 @@ for e in range(EPOCHS):
 
 
             if count%10 == 0:
-                print('SAVING MODEL!')
+                print('SAVING MODEL!!!')
                 model.save(MODEL_NAME)
                     
         except Exception as e:
