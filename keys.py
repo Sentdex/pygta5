@@ -580,9 +580,9 @@ if __name__ == '__main__':
     sleep(0.04)
     keys.directKey("a", keys.key_release, keys.virtual_keys)
     
-    # queue of keys (direct keys, threaded, only for keybord input)
+    # queue of keys (direct keys, threaded, only for keyboard input)
     keys.parseKeyString("a_down,-4,a_up,0x01")  # -4 - pause for 4 ms, 0x00 - hex code of Esc
     
-    # queue of keys (virtual keys, threaded, only for keybord input)
+    # queue of keys (virtual keys, threaded, only for keyboard input)
     keys.parseKeyString("vk,a_down,-4,a_up")  # -4 - pause for 4 ms
 
