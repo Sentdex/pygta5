@@ -61,3 +61,5 @@ docs/_build/
 # PyBuilder
 target/
 
+#iPython Stuff
+.ipynb_checkpoints*
