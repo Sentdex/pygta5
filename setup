@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+if [ -z $GTAPATH ]; then
+    echo "The GTAPATH environment variable must be set for the environment script to work."
+    echo "Please set 'export GTAPATH=<path to pygta repo>' before continuing"
+    exit 1
+fi
+echo "-> Using GTAPATH=$GTAPATH"
+cd $GTAPATH
+if [ ! -d "env" ]; then
+    python -m venv env
+fi
+source $GTAPATH/env/bin/activate
+pip install -r deps.txt
+#cd $GTAPATH
+#pip install .
+cd $GTAPATH
+deactivate
+echo "-> Done"
