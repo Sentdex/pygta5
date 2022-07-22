@@ -10,7 +10,7 @@
 <br/>
 <br/>
 
-# Overwiew
+# Overview
 
 Some of our tests did show that collecting (caching) more data and randomly sampling from it is more beneficial than using sample sets sent by the [`Data Collectors`](../project_info/system.md) right away. This is because while sampling a batch from a bigger cache of samples, we’re taking samples collected over a longer period of time, from other parts of the map, containing different data characteristics., etc. This means the batches are a better representation of all of the data and do not make the model only fit wherever the NPCs are now and to their current actions.
 
