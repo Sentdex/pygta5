@@ -23,7 +23,7 @@ from tflearn.layers.merge_ops import merge
 
 #used in v0.03-v0.06+
 def otherception3(width, height, frame_count, lr, output=9, model_name = 'otherception.model', device = 'gpu', num = '0'):
-    with tf.device(f'/{device}:{num}'):
+    with tf.device('/{}:{}'.format(device,num)):
         network = input_data(shape=[None, width, height,3], name='input')
         conv1_7_7 = conv_2d(network, 64, 28, strides=4, activation='relu', name = 'conv1_7_7_s2')
         pool1_3_3 = max_pool_2d(conv1_7_7, 9,strides=4)

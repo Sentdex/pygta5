@@ -153,7 +153,7 @@ def process_img(image):
 last_time = time.time()
 while True:
     screen =  np.array(ImageGrab.grab(bbox=(0,40,800,640)))
-    print(f'Frame took {time.time()-last_time} seconds')
+    print('Frame took {} seconds'.format(time.time()-last_time))
     last_time = time.time()
     new_screen,original_image = process_img(screen)
     cv2.imshow('window', new_screen)

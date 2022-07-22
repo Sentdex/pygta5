@@ -7,7 +7,7 @@ from queue import Queue
 
 
 # main keys class
-class Keys:
+class Keys(object):
 
     common = None
     standalone = False
@@ -56,7 +56,7 @@ class Keys:
         "NUMPAD0":      0x52,       "NP0":      0x52,
         "DIVIDE":       0xB5,       "NPDV":     0xB5,
         "MULTIPLY":     0x37,       "NPM":      0x37,
-        "SUBTRACT":    0x4A,       "NPS":      0x4A,
+        "SUBSTRACT":    0x4A,       "NPS":      0x4A,
         "ADD":          0x4E,       "NPA":      0x4E,
         "DECIMAL":      0x53,       "NPDC":     0x53,
         "NUMPADENTER":  0x9C,       "NPE":      0x9C,
@@ -167,7 +167,7 @@ class Keys:
         "NUMPAD0":      0x60,       "NP0":      0x60,
         "DIVIDE":       0x6F,       "NPDV":     0x6F,
         "MULTIPLY":     0x6A,       "NPM":      0x6A,
-        "SUBTRACT":    0x6D,       "NPS":      0x6D,
+        "SUBSTRACT":    0x6D,       "NPS":      0x6D,
         "ADD":          0x6B,       "NPA":      0x6B,
         "DECIMAL":      0x6E,       "NPDC":     0x6E,
         "NUMPADENTER":  0x0D,       "NPE":      0x0D,
@@ -421,7 +421,7 @@ class KeysWorker():
                 continue
             # print key
             elif not self.keys.standalone:
-                self.keys.common.info("Key: \033[1;35m{}/{}\033[0;37m, duration: \033[1;35m{:f}\033[0;37m, direction: \033[1;35m{}\033[0;37m, type: \033[1;35m{}".format(
+                self.keys.common.info("Key: \033[1;35m%s/%s\033[0;37m, duration: \033[1;35m%f\033[0;37m, direction: \033[1;35m%s\033[0;37m, type: \033[1;35m%s" % (
                     key["okey"] if key["okey"] else "None",
                     key["key"], key["time"],
                     "UP" if key["up"] and not key["down"] else "DOWN" if not key["up"] and key["down"] else "BOTH" if key["up"] and key["down"] else "NONE",
@@ -580,9 +580,9 @@ if __name__ == '__main__':
     sleep(0.04)
     keys.directKey("a", keys.key_release, keys.virtual_keys)
     
-    # queue of keys (direct keys, threaded, only for keyboard input)
+    # queue of keys (direct keys, threaded, only for keybord input)
     keys.parseKeyString("a_down,-4,a_up,0x01")  # -4 - pause for 4 ms, 0x00 - hex code of Esc
     
-    # queue of keys (virtual keys, threaded, only for keyboard input)
+    # queue of keys (virtual keys, threaded, only for keybord input)
     keys.parseKeyString("vk,a_down,-4,a_up")  # -4 - pause for 4 ms
 

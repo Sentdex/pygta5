@@ -42,7 +42,7 @@ nk = [0,0,0,0,0,0,0,0,1]
 starting_value = 1
 
 while True:
-    file_name = f'training_data-{starting_value}.npy'
+    file_name = 'training_data-{}.npy'.format(starting_value)
 
     if os.path.isfile(file_name):
         print('File exists, moving along',starting_value)
@@ -123,7 +123,7 @@ def main(file_name, starting_value):
                     print('SAVED')
                     training_data = []
                     starting_value += 1
-                    file_name = f'training_data-{starting_value}.npy'
+                    file_name = 'training_data-{}.npy'.format(starting_value)
 
                     
         keys = key_check()

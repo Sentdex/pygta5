@@ -189,7 +189,7 @@ def main():
 
             motion_log.append(delta_count)
             motion_avg = round(mean(motion_log),3)
-            print(f'loop took {round(time.time()-last_time, 3)} seconds. Motion: {motion_avg}. Choice: {choice_picked}')
+            print('loop took {} seconds. Motion: {}. Choice: {}'.format( round(time.time()-last_time, 3) , motion_avg, choice_picked))
             
             if motion_avg < motion_req and len(motion_log) >= log_len:
                 print('WERE PROBABLY STUCK FFS, initiating some evasive maneuvers.')
