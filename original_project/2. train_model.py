@@ -60,10 +60,10 @@ for e in range(EPOCHS):
     for count,i in enumerate(data_order):
         
         try:
-            file_name = 'J:/phase10-random-padded/training_data-{}.npy'.format(i)
+            file_name = f'J:/phase10-random-padded/training_data-{i}.npy'
             # full file info
             train_data = np.load(file_name)
-            print('training_data-{}.npy'.format(i),len(train_data))
+            print(f'training_data-{i}.npy',len(train_data))
 
 ##            # [   [    [FRAMES], CHOICE   ]    ] 
 ##            train_data = []

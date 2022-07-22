@@ -40,7 +40,7 @@ def main():
     while(True):
         screen =  np.array(ImageGrab.grab(bbox=(0,40, 800, 640)))
         new_screen = process_img(screen)
-        print('Loop took {} seconds'.format(time.time()-last_time))
+        print(f'Loop took {time.time()-last_time} seconds')
         last_time = time.time()
         cv2.imshow('window', new_screen)
         #cv2.imshow('window2', cv2.cvtColor(screen, cv2.COLOR_BGR2RGB))

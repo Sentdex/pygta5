@@ -187,7 +187,7 @@ This is not a full project log and contains only the key changes that are visibl
 - Started streaming [`model_0003_xception_v1`](model_0003_xception) from batch *24500* (pre-trained off-stream)
 - Started training [`model_0003_xception_v3`](model_0003_xception) from scratch
 
-**May 3nd:**
+**May 3rd:**
 - Stopped training [`model_0003_xception_v3`](model_0003_xception) at batch *17500*
 - Started training [`model_0003_xception_v4`](model_0003_xception) from scratch
 - Stopped training [`model_0003_xception_v4`](model_0003_xception) at batch *5150*

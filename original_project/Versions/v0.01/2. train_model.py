@@ -28,7 +28,7 @@ for i in range(EPOCHS):
     data_order = [i for i in range(START_NUMBER,hm_data+1)]
     shuffle(data_order)
     for i in data_order:
-        train_data = np.load('training_data-{}.npy'.format(i))
+        train_data = np.load(f'training_data-{i}.npy')
         
         df = pd.DataFrame(train_data)
         df = df.iloc[np.random.permutation(len(df))]

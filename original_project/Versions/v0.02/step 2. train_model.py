@@ -60,7 +60,7 @@ for e in range(EPOCHS):
     for count,i in enumerate(data_order):
         
         try:
-            file_name = 'X:/pygta5/phase-7-balanced-just-color/training_data-{}.npy'.format(i)
+            file_name = f'X:/pygta5/phase-7-balanced-just-color/training_data-{i}.npy'
             # full file info
             train_data = np.load(file_name)
 

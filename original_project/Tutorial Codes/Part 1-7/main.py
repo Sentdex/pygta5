@@ -91,7 +91,7 @@ for i in list(range(4))[::-1]:
 last_time = time.time()
 while True:
     screen = grab_screen(region=(0,40,800,640))
-    print('Frame took {} seconds'.format(time.time()-last_time))
+    print(f'Frame took {time.time()-last_time} seconds')
     last_time = time.time()
     new_screen,original_image, m1, m2 = process_img(screen)
     #cv2.imshow('window', new_screen)

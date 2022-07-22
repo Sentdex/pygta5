@@ -14,7 +14,7 @@ import numpy as np
 
 CONST_DLL_VJOY = "vJoyInterface.dll"
 
-class vJoy(object):
+class vJoy:
     def __init__(self, reference = 1):
         self.handle = None
         self.dll = ctypes.CDLL( CONST_DLL_VJOY )

@@ -18,7 +18,7 @@ nk = [0,0,0,0,0,0,0,0,1]
 starting_value = 395
 
 while True:
-    file_name = 'X:/pygta5/phase7-fpv-training/training_data-{}.npy'.format(starting_value)
+    file_name = f'X:/pygta5/phase7-fpv-training/training_data-{starting_value}.npy'
 
     if os.path.isfile(file_name):
         print('File exists, moving along',starting_value)

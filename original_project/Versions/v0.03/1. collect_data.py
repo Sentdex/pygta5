@@ -20,7 +20,7 @@ key_map = {
 starting_value = 1058
 
 while True:
-    file_name = 'training_data-{0}.npy'.format(starting_value)
+    file_name = f'training_data-{starting_value}.npy'
     if os.path.isfile(file_name):
         print('File exists, moving along', starting_value)
         starting_value += 1
@@ -74,7 +74,7 @@ def main(file_name, starting_value):
                     print('SAVED')
                     training_data = []
                     starting_value += 1
-                    file_name = 'X:/pygta5/phase7-larger-color/training_data-{0}.npy'.format(starting_value)
+                    file_name = f'X:/pygta5/phase7-larger-color/training_data-{starting_value}.npy'
 
         keys = key_check()
         if 'T' in keys:

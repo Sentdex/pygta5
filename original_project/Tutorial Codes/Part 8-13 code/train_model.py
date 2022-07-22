@@ -13,7 +13,7 @@ model = alexnet(WIDTH, HEIGHT, LR)
 hm_data = 22
 for i in range(EPOCHS):
     for i in range(1,hm_data+1):
-        train_data = np.load('training_data-{}-balanced.npy'.format(i))
+        train_data = np.load(f'training_data-{i}-balanced.npy')
 
         train = train_data[:-100]
         test = train_data[-100:]

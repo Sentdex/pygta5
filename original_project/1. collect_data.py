@@ -18,7 +18,7 @@ nk = [0,0,0,0,0,0,0,0,1]
 starting_value = 1
 
 while True:
-    file_name = 'training_data-{}.npy'.format(starting_value)
+    file_name = f'training_data-{starting_value}.npy'
 
     if os.path.isfile(file_name):
         print('File exists, moving along',starting_value)
@@ -98,7 +98,7 @@ def main(file_name, starting_value):
                     print('SAVED')
                     training_data = []
                     starting_value += 1
-                    file_name = 'X:/pygta5/phase7-larger-color/training_data-{}.npy'.format(starting_value)
+                    file_name = f'X:/pygta5/phase7-larger-color/training_data-{starting_value}.npy'
 
                     
         keys = key_check()

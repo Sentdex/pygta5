@@ -149,7 +149,7 @@ with the x and y, your %s are out of 16393
                 vj.update(joystickPosition)
                 time.sleep(0.001)
                 vj.close()
-                print('FPS {}. Motion: {}. ThumbXaxis: {}. Throttle: {}. Brake: {}'.format(fps , motion_avg, int(XYRANGE + (turn*XYRANGE)), int(ZRANGE*throttle),0))  
+                print(f'FPS {fps}. Motion: {motion_avg}. ThumbXaxis: {int(XYRANGE + (turn*XYRANGE))}. Throttle: {int(ZRANGE*throttle)}. Brake: {0}')  
 
             else:
                 vj.open()
@@ -157,7 +157,7 @@ with the x and y, your %s are out of 16393
                 vj.update(joystickPosition)
                 time.sleep(0.001)
                 vj.close()
-                print('FPS {}. Motion: {}. ThumbXaxis: {}. Throttle: {}. Brake: {}'.format(fps , motion_avg, int(XYRANGE + (turn*XYRANGE)), 0, int(-1*(ZRANGE*throttle))))  
+                print(f'FPS {fps}. Motion: {motion_avg}. ThumbXaxis: {int(XYRANGE + (turn*XYRANGE))}. Throttle: {0}. Brake: {int(-1*(ZRANGE*throttle))}')  
 
             mode_choice = np.argmax(prediction)
 
