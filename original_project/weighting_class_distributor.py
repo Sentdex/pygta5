@@ -1,5 +1,5 @@
 '''
-After noticing such a substantial improvment 2.6% after my own manual changes,
+After noticing such a substantial improvement 2.6% after my own manual changes,
 validating my expectations, i've decided to automate this process.
 '''
 import keras
@@ -34,7 +34,7 @@ close_dict = {
               0: {4: 0.3, 5: 0.3, 8: 0.05},  # Should be W, but said WA or WD NK nbd
               1: {6: 0.3, 7: 0.3, 8: 0.05},  # Should be S, but said SA OR SD, NK nbd
               2: {4: 0.3, 6: 0.3},           # Should be A, but SA or WA
-              3: {5: 0.3, 7: 0.3},           # Shoudl be D, but SD or WD
+              3: {5: 0.3, 7: 0.3},           # Should be D, but SD or WD
               4: {2: 0.5},                   # Should be WA, but A
               5: {3: 0.5},                   # Should be WD, but D
               6: {1: 0.3, 2: 0.3},           # Should be SA, but S or A
