@@ -42,7 +42,7 @@ The model performed quite well and has been later streamed replacing [`model_000
 This model (orange line) compared to the [`model_0002_xception_v1`](../model_0002_xception) model (gray line) shows a higher loss, mostly due to slight unbalance and probably more feature-reach data, but also performed better:  
 ![model_0003_xception-0001-model_0002_xception-0001.tb](../_media/model_0003_xception-0001-model_0002_xception-0001.tb.png)
 
-*Some examples of this model during differen stages of trainig:*
+*Some examples of this model during different stages of trainig:*
 
 **May 3rd**, batch: *52340*:  
 <a href="https://www.youtube.com/watch?v=tLRSpQJfb24"><img src="../_media/AT-cm_Kus-LHHFyP432mowSrY3PQ.jpg" width="49.4%"></a>  
